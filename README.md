@@ -1,16 +1,38 @@
-# teste_riverpod
+# 📱 Barber Booking App
 
-A new Flutter project.
+A modern **barbershop appointment app** built with **Flutter**, applying **Clean Architecture** and using **Riverpod** for state management and dependency injection.
 
-## Getting Started
+This project is designed as a real-world portfolio piece, showcasing solid architectural principles, separation of concerns, and scalability — ideal for demonstrating skills to potential employers or freelance clients.
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+## 🔧 Tech Stack
+- **Flutter**
+- **Dart**
+- **Clean Architecture (Domain, Data, Presentation layers)**
+- **Riverpod (state management & DI)**
+- **Firebase (to be implemented)**
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## ✅ Features
+- User login/logout (Use Cases + Repository pattern)
+- Schedule booking system (under development)
+- List of barbers and available slots
+- Prepared for integration with real backend
+
+---
+
+## 🧠 Architecture Overview
+- `domain/` – Entities & Use Cases (business rules)
+- `data/` – Repositories & data sources (abstracted for flexibility)
+- `presentation/` – UI logic with state management using Riverpod
+
+---
+
+## 🚀 Purpose
+This app is built as a **portfolio project** to showcase:
+- Proficiency in Flutter and Dart
+- Understanding of Clean Architecture in real-world scenarios
+- Use of modern state management tools like Riverpod
+- Ability to write clean, testable, and scalable code
