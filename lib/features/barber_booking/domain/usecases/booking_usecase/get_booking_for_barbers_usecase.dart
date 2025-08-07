@@ -5,5 +5,7 @@ class GetBookingForBarbers {
   final BookingRepository bookingRepository;
 
   GetBookingForBarbers({required this.bookingRepository});
-  Future<List<BookingEntity>> call(String id) async {return await bookingRepository.getBookingsForBarber(id)}
+  Future<List<BookingEntity>> call(String id) async {
+    return await bookingRepository.getBookingsForBarber(id);
+  }
 }

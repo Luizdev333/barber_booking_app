@@ -4,7 +4,7 @@ enum Services { haircut, beard, eyeBrowns }
 
 class BookingEntity {
   final String id;
-  final String userId; // quem marcou
+  final String userId;
   final String barberId;
   final Services service;
   final DateTime dateTime;
