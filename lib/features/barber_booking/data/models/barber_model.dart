@@ -25,4 +25,27 @@ class BarberModel extends BarberEntity {
       imageUrl: barber.imageUrl,
     );
   }
+
+  BarberEntity toEntity() {
+    return BarberEntity(
+      availableTimes: availableTimes,
+      id: id,
+      imageUrl: imageUrl,
+      name: name,
+    );
+  }
+
+  BarberModel copyWith({
+    int? id,
+    String? name,
+    String? imageUrl,
+    List<DateTime>? availableTimes,
+  }) {
+    return BarberModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      imageUrl: imageUrl ?? this.imageUrl,
+      availableTimes: availableTimes ?? this.availableTimes,
+    );
+  }
 }

@@ -1,7 +1,17 @@
-import 'dart:async';
-import '../models/barber_model.dart';
-import 'barber_remote_datasource.dart';
+// BarberRemoteDataSource.dart
+import 'package:barber_schedule/features/barber_booking/data/models/barber_model.dart';
+import 'package:barber_schedule/features/barber_booking/domain/repositories/barber_repositories.dart';
 
+abstract class BarberRemoteDataSource {
+  Future<List<BarberModel>> getAllBarbers();
+  Future<BarberModel> getBarberById(String id);
+  Future<void> createBarber(BarberModel barber);
+  Future<void> updateBarber(BarberModel barber);
+  Future<void> deleteBarber(String id);
+  Future<void> updateAvailability(String barberId, List<DateTime> times);
+}
+
+// BarberRemoteDataSourceMock.dart
 class BarberRemoteDataSourceMock implements BarberRemoteDataSource {
   final List<BarberModel> _mockBarbers = [];
 
@@ -14,11 +24,10 @@ class BarberRemoteDataSourceMock implements BarberRemoteDataSource {
   @override
   Future<BarberModel> getBarberById(String id) async {
     await Future.delayed(const Duration(milliseconds: 500));
-    final barber = _mockBarbers.firstWhere(
+    return _mockBarbers.firstWhere(
       (b) => b.id == id,
       orElse: () => throw Exception('Barber not found'),
     );
-    return barber;
   }
 
   @override
@@ -38,6 +47,31 @@ class BarberRemoteDataSourceMock implements BarberRemoteDataSource {
   @override
   Future<void> deleteBarber(String id) async {
     await Future.delayed(const Duration(milliseconds: 500));
-    _mockBarbers.removeWhere((b) => b.id.toString() == id);
+    _mockBarbers.removeWhere((b) => b.id == id);
   }
+
+  @override
+  Future<void> updateAvailability(String barberId, List<DateTime> times) async {
+    await Future.delayed(const Duration(milliseconds: 500));
+    final index = _mockBarbers.indexWhere((b) => b.id.toString() == barberId);
+    if (index == -1) throw Exception('Barber not found');
+
+    final updatedBarber = _mockBarbers[index].copyWith(availableTimes: times);
+
+    _mockBarbers[index] = updatedBarber;
+  }
+}
+
+// BarberRepositoryImpl.dart
+class BarberRepositoryImpl implements BarberRepository {
+  final BarberRemoteDataSource remoteDataSource;
+
+  BarberRepositoryImpl(this.remoteDataSource);
+
+  @override
+  Future<void> updateAvailability(String barberId, List<DateTime> times) async {
+    await remoteDataSource.updateAvailability(barberId, times);
+  }
+
+  // outros métodos chamam o datasource da mesma forma
 }
