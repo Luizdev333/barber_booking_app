@@ -43,6 +43,24 @@ class BookingModel {
     required this.status,
   });
 
+  BookingModel copyWith({
+    String? id,
+    String? userId,
+    String? barberId,
+    ServicesModel? service,
+    DateTime? dateTime,
+    BookingStatusModel? status,
+  }) {
+    return BookingModel(
+      id: id ?? this.id,
+      userId: userId ?? this.userId,
+      barberId: barberId ?? this.barberId,
+      service: service ?? this.service,
+      dateTime: dateTime ?? this.dateTime,
+      status: status ?? this.status,
+    );
+  }
+
   factory BookingModel.fromJson(Map<String, dynamic> json) =>
       _$BookingModelFromJson(json);
 
